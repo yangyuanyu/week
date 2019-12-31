@@ -1,0 +1,7 @@
+com\bw\week1\service\impl\GoodsServiceImpl.class
+com\bw\week1\service\GoodsService.class
+com\bw\week1\domain\Brand.class
+com\bw\week1\domain\Type.class
+com\bw\week1\domain\Goods.class
+com\bw\week1\controller\GoodsController.class
+com\bw\week1\dao\GoodsMapper.class

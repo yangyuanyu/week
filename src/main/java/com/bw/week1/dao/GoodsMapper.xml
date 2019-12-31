@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.bw.week1.dao.GoodsMapper">
+	<select id="list" resultType="com.bw.week1.domain.Goods">
+		select * from t_goods 
+		<where>
+			<if test="name!=null and name!=''">
+				name like '%${name}%'
+			</if>
+		</where>
+	</select>
+	
+	
+	<insert id="insert">
+	insert into t_goods (name,ename,bid,tid,price,num,pic) values(#{name},#{ename},#{bid},#{tid},#{price},#{num},#{pic})
+	</insert>
+	
+	<select id="selectTypes"  resultType="Type">
+	  select * from t_type
+	</select>
+	
+	<select id="selectBrands" resultType="Brand">
+	  select * from t_brand
+	</select>
+	<select id="toUpdate" resultType="com.dengyingjie.entity.Goods">
+		select * from t_goods a left join t_type b on a.tid=b.tid
+		left join t_brand c on a.bid=c.bid where a.gid=#{gid}
+	</select>
+	<update id="update">
+		update t_goods set bid=#{bid},datea=#{datea},tid=#{tid},price=#{price} where gid=#{gid}
+	</update>
+	<delete id="delAll">
+		delete from t_goods where gid in 
+		<foreach collection="array" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+  </mapper>
